@@ -3,7 +3,7 @@
 {% block content %}
     {% for curso in cursos %}
         <div class="container-fluid">
-            <h3><a href="#">{{ curso.nome_curso|linebreaksbr }}</a> </h3>
+            <h3><a href="{% url 'curso_detail' pk=curso.pk %}">{{ curso.nome_curso }}</a> </h3>
             <hr>
         </div>
     {% endfor %}

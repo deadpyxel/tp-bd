@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h3>{{ curso.nome_curso }}</h3>
+        <p>Curso de nível {{ curso.nivel_curso }}, ministrado pela {{ curso.cod_IES }}</p>
+        <p>Modalidade: {{ curso.modalidade }}</p>
+        <p>Carga Horária: {{ curso.carga_horaria }}</p>
+        <p>Período: {{ curso.periodo }}</p>
+        <p>Gratuito: {{ curso.curso_gratuito }}</p>
+        <p>Número de Vagas: {{ curso.num_vagas }}</p>
+    </div>
+{% endblock %}
