@@ -1,10 +1,10 @@
-# TP - LFA
+# CompMap
 
 Trabalho prático para a disciplina de Banco de Dados II.
 
-Esse software se encontra atualmente na versão `0.1.1` .
+Esse software se encontra atualmente na versão `0.1.1`.
 
-## First Steps
+## Primeiros Passos
 
 Siga as instruções abaixo para obter uma cópia do rojeto rodando localmente.
 
@@ -24,7 +24,7 @@ Para executar o projeto será necessário:
 ```
 python manage.py runserver
 ```
-- Abra o endereço [localhost:8000](localhost:8000) em um navegador.
+- Abra o endereço [localhost:8000](http://localhost:8000/) em um navegador.
 
 ## Construído com
 
@@ -44,7 +44,7 @@ Please, read [CONTRIBUTING.md](CONTRIBUTING.md) for details about the conduct co
 
 To know what's changed check our [CHANGELOG.md](CHANGELOG.md).
 
-## Author
+## Autor/Author
 
 * **Robson Cruz** - *Other works* - [deadpyxel](https://github.com/deadpyxel)
 
