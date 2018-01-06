@@ -3,74 +3,88 @@
 <html>
 <head>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}"/>
-    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'main/style.css' %}"/>
+    <link href='https://fonts.googleapis.com/css?family=Satisfy'
+          rel='stylesheet' type='text/css'>
     <meta charset="utf-8">
     <title>CompMap</title>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{% url 'index' %}">CompMap</a>
-            </div>
-            <div class="collapse navbar-collapse" id="topNavbar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="{% url 'index' %}">
-                            <i class="fas fa-home"></i>&nbsp; Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-graduation-cap"></i>&nbsp; Cursos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-university"></i>&nbsp; Instituições                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-map-marker"></i>&nbsp; Mapa
-                        </a>
-                    </li>
-                </ul>
-                <!--<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'index' %}">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
-                    </div>
-                    <button type="submit" class="btn btn-default">Search</button>
-                </form>-->
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="{% url 'curso_new' %}">
-                            <i class="fas fa-plus"></i>&nbsp; Adicionar Curso
-                        </a>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#topNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index' %}">CompMap</a>
         </div>
-    </nav>
-    {% block content %}
-    {% endblock %}
-    <div class="container">
-        <hr>
-        <footer class="pull-right">
-            <p><i class="fas fa-code"></i> 2017 <a href="https://github.com/deadpyxel/">deadpyxel</a></p>
-        </footer>
+        <div class="collapse navbar-collapse" id="topNavbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{% url 'index' %}">
+                        <i class="fas fa-home"></i>&nbsp; Home
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'curso_list' %}">
+                        <i class="fas fa-graduation-cap"></i>&nbsp; Cursos
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-university"></i>&nbsp; Instituições
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-map-marker"></i>&nbsp; Mapa
+                    </a>
+                </li>
+            </ul>
+            <!--<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'index' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>-->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url 'curso_new' %}">
+                        <i class="fas fa-plus"></i>&nbsp; Adicionar Curso
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <!-- Script import -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</nav>
+{% block content %}
+{% endblock %}
+<div class="container">
+    <hr>
+    <footer class="pull-right">
+        <p><i class="fas fa-code"></i> 2017 <a
+                href="https://github.com/deadpyxel/">deadpyxel</a></p>
+    </footer>
+</div>
+<!-- Script import -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script defer
+        src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </body>
 </html>

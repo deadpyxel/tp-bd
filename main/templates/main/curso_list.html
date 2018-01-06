@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    {% for curso in cursos %}
+    <p>
+        <a href="{% url 'curso_detail' pk=curso.pk %}">
+            {{ curso.nome_curso }}
+        </a>
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}

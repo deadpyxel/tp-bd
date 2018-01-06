@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import socket
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -48,12 +50,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#CSRF_COOKIE_SECURE = True
-#SECURE_BROWSER_XSS_FILTER = True
-#SESSION_COOKIE_SECURE = True
-#X_FRAME_OPTIONS = 'DENY'
-#SECURE_SSL_REDIRECT = True
-#SECURE_CONTENT_TYPE_NOSNIFF = True
+if socket.gethostname() == 'sidious-black':
+    from .local_settings import *
 
 ROOT_URLCONF = 'compmap.urls'
 

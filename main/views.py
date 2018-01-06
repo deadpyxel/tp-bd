@@ -4,8 +4,12 @@ from .models import Curso
 
 
 def index(request):
+    return render(request, 'main/index.html')
+
+
+def curso_list(request):
     cursos = Curso.objects.all()
-    return render(request, 'main/index.html', {'cursos': cursos})
+    return render(request, 'main/curso_list.html', {'cursos': cursos})
 
 
 def curso_detail(request, pk):

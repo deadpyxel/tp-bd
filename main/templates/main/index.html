@@ -1,12 +1,6 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-{% for curso in cursos %}
-<div class="container-fluid">
-    <h3><a href="{% url 'curso_detail' pk=curso.pk %}">{{ curso.nome_curso }}</a></h3>
-    <hr>
-</div>
-{% endfor %}
 <div class="jumbotron">
     <div class="container">
         <h1>CompMap</h1>
