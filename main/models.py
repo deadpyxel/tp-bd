@@ -1,9 +1,11 @@
+# coding: utf-8
+
 from django.utils import timezone
 
 from django.db import models
 
 
-# TODO Adicionar endereço da instituicao
+# TODO Adicionar endereco da instituicao
 class IntituicaoEnsinoSuperior(models.Model):
     # Organizacao Academica
     UNIVERSIDADE = 'UNI'
@@ -101,8 +103,8 @@ class Curso(models.Model):
     nome_curso = models.CharField('Nome do Curso', max_length=200, null=False)
     data_inicio_oferta = models.DateField('Data de início da oferta',
                                           default=timezone.now, null=False)
-    cod_IES = models.ForeignKey('IntituicaoEnsinoSuperior', on_delete=models.CASCADE,
-                                 default=1)
+    cod_IES = models.ForeignKey('IntituicaoEnsinoSuperior',
+                                on_delete=models.CASCADE, default=1)
     carga_horaria = models.IntegerField('Carga Horária', default=2400,
                                         null=False)
     modalidade = models.CharField(max_length=3, choices=MODALIDADE_CHOICES,
