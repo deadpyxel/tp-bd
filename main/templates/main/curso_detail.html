@@ -1,5 +1,7 @@
 {% extends 'main/base.html' %}
 
+{% block title %}CompMap | Detalhes do Curso{% endblock %}
+
 {% block content %}
 
 <div class="container">
@@ -11,7 +13,7 @@
     <p>Período: {{ curso.periodo }}</p>
     <p>Gratuito: {{ curso.curso_gratuito }}</p>
     <p>Número de Vagas: {{ curso.num_vagas }}</p>
-    <a class="btn btn-default" href="{% url 'curso_edit' pk=curso.pk %}">
+    <a class="btn btn-default" href="{% url 'main:curso_edit' pk=curso.pk %}">
         <i class="fas fa-edit"></i>&nbsp; Alterar
     </a>
 </div>

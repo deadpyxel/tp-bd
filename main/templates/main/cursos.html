@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block title %}CompMap | Cursos{% endblock %}
+
+{% block cursos_active %}active{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    {% for curso in object_list %}
+    <p>
+        <a href="{% url 'main:curso_detail' pk=curso.pk %}">
+            {{ curso.nome_curso }}
+        </a>
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}

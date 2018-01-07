@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block title %}CompMap | IES{% endblock %}
+
+{% block ies_active %}active{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    {% for ies in object_list %}
+    <p>
+        <a href="{% url 'main:ies_detail' pk=ies.pk %}">
+            {{ ies.nome_IES }}
+        </a>
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}

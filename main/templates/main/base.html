@@ -17,7 +17,7 @@
     <link href='https://fonts.googleapis.com/css?family=Satisfy'
           rel='stylesheet' type='text/css'>
     <meta charset="utf-8">
-    <title>CompMap</title>
+    <title>{% block title %}CompMap{% endblock %}</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -29,40 +29,40 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'index' %}">CompMap</a>
+            <a class="navbar-brand" href="{% url 'main:index' %}">CompMap</a>
         </div>
         <div class="collapse navbar-collapse" id="topNavbar">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="{% url 'index' %}">
+                <li class="{% block index_active %}{% endblock %}">
+                    <a href="{% url 'main:index' %}">
                         <i class="fas fa-home"></i>&nbsp; Home
                     </a>
                 </li>
-                <li>
-                    <a href="{% url 'curso_list' %}">
+                <li class="{% block cursos_active %}{% endblock %}">
+                    <a href="{% url 'main:curso_list' %}">
                         <i class="fas fa-graduation-cap"></i>&nbsp; Cursos
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{% block ies_active %}{% endblock %}">
+                    <a href="{% url 'main:ies_list' %}">
                         <i class="fas fa-university"></i>&nbsp; Instituições
                     </a>
                 </li>
-                <li>
+                <li class="{% block map_active %}{% endblock %}">
                     <a href="#">
                         <i class="fas fa-map-marker"></i>&nbsp; Mapa
                     </a>
                 </li>
             </ul>
-            <!--<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'index' %}">
+            <!--<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'main:index' %}">
                 <div class="form-group">
                     <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>-->
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{% url 'curso_new' %}">
+                <li class="{% block add_curso_active %}{% endblock %}">
+                    <a href="{% url 'main:curso_new' %}">
                         <i class="fas fa-plus"></i>&nbsp; Adicionar Curso
                     </a>
                 </li>
@@ -72,13 +72,6 @@
 </nav>
 {% block content %}
 {% endblock %}
-<div class="container">
-    <hr>
-    <footer class="pull-right">
-        <p><i class="fas fa-code"></i> 2017 <a
-                href="https://github.com/deadpyxel/">deadpyxel</a></p>
-    </footer>
-</div>
 <!-- Script import -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script defer

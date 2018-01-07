@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %}CompMap | Detalhes do Curso{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <p>Nome: {{ ies.nome_IES }}</p>
+    <p>Sigla: {{ ies.sigla_IES }}</p>
+    <a class="btn btn-default" href="{% url 'main:ies_edit' pk=object.pk %}">
+        <i class="fas fa-edit"></i>&nbsp;Alterar
+    </a>
+</div>
+{% endblock %}
