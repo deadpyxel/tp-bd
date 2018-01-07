@@ -3,6 +3,10 @@ from django.views import generic
 from .forms import CursoForm
 from .models import Curso, IntituicaoEnsinoSuperior
 
+# TODO refactor code for class based views
+# TODO Add Mantenedora views
+# TODO Add Map views
+
 
 # views Cursos
 class CursosListView(generic.ListView):
@@ -30,7 +34,7 @@ def curso_new(request):
             return redirect('curso_detail', pk=curso.pk)
     else:
         form = CursoForm()
-    return render(request, 'main/curso_edit.html', {'form': form})
+    return render(request, 'main/curso_update_form.html', {'form': form})
 
 
 def curso_edit(request, pk):
@@ -43,7 +47,7 @@ def curso_edit(request, pk):
             return redirect('curso_detail', pk=curso.pk)
     else:
         form = CursoForm(instance=curso)
-    return render(request, 'main/curso_edit.html', {'form': form})
+    return render(request, 'main/curso_update_form.html', {'form': form})
 
 
 # views IES
