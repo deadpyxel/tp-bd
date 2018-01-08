@@ -6,6 +6,15 @@
 
 {% block content %}
 <div class="container">
+    <form class="navbar-form" role="search" method="get"
+          action="{% url 'main:ies_list' %}">
+        <input type="text" class="form-control" name="q"
+               value="{{ request.GET.q }}" placeholder="Busca">
+        <button type="submit" class="btn btn-default">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+    <br>
     <div class="panel-group">
         {% for ies in object_list %}
         <div class="panel panel-default">
@@ -21,7 +30,11 @@
         {% empty %}
         <div class="panel panel-heading">
             <div class="panel-body">
-                Não existem instituições registrados no momento.
+                {% if q != '' %}
+                Não existem Instituições com os parâmetros de busca.
+                {% else %}
+                Não existem Instituições registrados no momento.
+                {% endif %}
             </div>
         </div>
         {% endfor %}

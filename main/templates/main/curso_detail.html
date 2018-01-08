@@ -16,5 +16,8 @@
     <a class="btn btn-default" href="{% url 'main:curso_edit' pk=curso.pk %}">
         <i class="fas fa-edit"></i>&nbsp; Alterar
     </a>
+    <a class="btn btn-danger" href="{% url 'main:curso_delete' pk=curso.pk %}">
+        <i class="fas fa-edit"></i>&nbsp; Excluir
+    </a>
 </div>
 {% endblock %}

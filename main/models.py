@@ -1,5 +1,5 @@
 # coding: utf-8
-
+from django.urls import reverse
 from django.utils import timezone
 
 from django.db import models
@@ -52,6 +52,9 @@ class IntituicaoEnsinoSuperior(models.Model):
         'Departamento Administrativo', max_length=3,
         choices=DEPARTAMENTO_ADM_CHOICES, default=ADM_ESTADUAL, null=False)
     cep = models.IntegerField('CEP', default=00000000, null=False)
+
+    def get_absolute_url(self):
+        return reverse('main:ies_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nome_IES
@@ -117,6 +120,9 @@ class Curso(models.Model):
     num_vagas = models.IntegerField('Número de vagas', default=40, null=False)
     possui_acessabilidade = models.BooleanField('Possui Acessabilidade',
                                                 default=False)
+
+    def get_absolute_url(self):
+        return reverse('main:ies_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nome_curso

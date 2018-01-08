@@ -37,7 +37,11 @@
         {% empty %}
         <div class="panel panel-heading">
             <div class="panel-body">
+                {% if q != '' %}
+                Não existem cursos com os parâmetros de busca.
+                {% else %}
                 Não existem cursos registrados no momento.
+                {% endif %}
             </div>
         </div>
         {% endfor %}

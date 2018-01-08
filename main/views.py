@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls.base import reverse_lazy
 from django.views import generic
 from .forms import CursoForm
 from .models import Curso, IntituicaoEnsinoSuperior
 
 
-# TODO refactor code for class based views
+# TODO refactor code for class based views (50%)
 # TODO Add Mantenedora views
 # TODO Add Map views
 
@@ -33,6 +34,11 @@ class CursosListView(generic.ListView):
 class CursosDetailView(generic.DetailView):
     model = Curso
     template_name = 'main/curso_detail.html'
+
+
+class CursoDeleteView(generic.DeleteView):
+    model = Curso
+    success_url = reverse_lazy('curso_list')
 
 
 def index(request):
@@ -67,10 +73,27 @@ def curso_edit(request, pk):
 # views IES
 
 class IESListView(generic.ListView):
+    model = IntituicaoEnsinoSuperior
     template_name = 'main/ies.html'
+    paginate_by = 10
 
     def get_queryset(self):
-        return IntituicaoEnsinoSuperior.objects.all()
+        try:
+            q = self.request.GET.get('q')
+            if q is None:
+                q = ''
+        except:
+            q = ''
+        if q != '':
+            object_list = self.model.objects.filter(nome_IES__icontains=q)
+        else:
+            object_list = self.model.objects.all()
+        return object_list
+
+
+class IESCreate(generic.CreateView):
+    model = IntituicaoEnsinoSuperior
+    fields = ['nome_IES', 'sigla_IES', 'email_IES']
 
 
 class IESDetailView(generic.DetailView):
@@ -83,6 +106,11 @@ class IESUpdateView(generic.UpdateView):
     model = IntituicaoEnsinoSuperior
     fields = ['nome_IES', 'sigla_IES', 'email_IES']
     template_name = 'main/ies_update_form.html'
+
+
+class IESDeleteView(generic.DeleteView):
+    model = IntituicaoEnsinoSuperior
+    success_url = reverse_lazy('ies_list')
 
 
 # map
