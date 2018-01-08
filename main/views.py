@@ -3,6 +3,7 @@ from django.views import generic
 from .forms import CursoForm
 from .models import Curso, IntituicaoEnsinoSuperior
 
+
 # TODO refactor code for class based views
 # TODO Add Mantenedora views
 # TODO Add Map views
@@ -11,6 +12,7 @@ from .models import Curso, IntituicaoEnsinoSuperior
 # views Cursos
 class CursosListView(generic.ListView):
     template_name = 'main/cursos.html'
+    context_object_name = 'cursos'
 
     def get_queryset(self):
         return Curso.objects.all()
@@ -69,3 +71,9 @@ class IESUpdateView(generic.UpdateView):
     model = IntituicaoEnsinoSuperior
     fields = ['nome_IES', 'sigla_IES', 'email_IES']
     template_name = 'main/ies_update_form.html'
+
+
+# map
+
+def map_view(request):
+    return render(request, 'main/map.html')

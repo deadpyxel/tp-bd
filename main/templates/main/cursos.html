@@ -5,13 +5,33 @@
 {% block cursos_active %}active{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    {% for curso in object_list %}
-    <p>
-        <a href="{% url 'main:curso_detail' pk=curso.pk %}">
-            {{ curso.nome_curso }}
-        </a>
-    </p>
-    {% endfor %}
+<div class="container">
+    <div class="panel-group">
+        {% for curso in cursos %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fas fa-graduation-cap"></i>&nbsp;
+                <a href="{% url 'main:curso_detail' pk=curso.pk %}">
+                    {{ curso.nome_curso }}
+                </a>
+            </div>
+            <div class="panel-body">
+                Curso {{ curso.modalidade }} de {{ curso.nivel_curso }},
+                {% if curso.curso_gratuito is True %}
+                    Gratuito.
+                {% else %}
+                    Particular.
+                {% endif %}
+                Ministrado no período {{ curso.periodo }}.
+            </div>
+        </div>
+        {% empty %}
+        <div class="panel panel-heading">
+            <div class="panel-body">
+                Não existem cursos registrados no momento.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

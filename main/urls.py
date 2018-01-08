@@ -17,4 +17,6 @@ urlpatterns = [
         name='ies_detail'),
     url(r'^ies/(?P<pk>\d+)/edit/$', views.IESUpdateView.as_view(),
         name='ies_edit'),
+    # map
+    url(r'^mapa/$', views.map_view, name='map_view'),
 ]

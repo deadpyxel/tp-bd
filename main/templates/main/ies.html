@@ -5,13 +5,26 @@
 {% block ies_active %}active{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    {% for ies in object_list %}
-    <p>
-        <a href="{% url 'main:ies_detail' pk=ies.pk %}">
-            {{ ies.nome_IES }}
-        </a>
-    </p>
-    {% endfor %}
+<div class="container">
+    <div class="panel-group">
+        {% for ies in object_list %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fas fa-university"></i>&nbsp;
+                <a href="{% url 'main:ies_detail' pk=ies.pk %}">
+                    {{ ies.nome_IES }}
+                </a>
+            </div>
+            <div class="panel-body">Instituição {{ ies.rede  }},
+                {{ ies.departamento_administrativo }}. Mantida pela {{ ies.cod_mant }}</div>
+        </div>
+        {% empty %}
+        <div class="panel panel-heading">
+            <div class="panel-body">
+                Não existem instituições registrados no momento.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
