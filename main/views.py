@@ -13,9 +13,21 @@ from .models import Curso, IntituicaoEnsinoSuperior
 class CursosListView(generic.ListView):
     template_name = 'main/cursos.html'
     context_object_name = 'cursos'
+    model = Curso
+    paginate_by = 10
 
     def get_queryset(self):
-        return Curso.objects.all()
+        try:
+            q = self.request.GET.get('q')
+            if q is None:
+                q = ''
+        except:
+            q = ''
+        if q != '':
+            object_list = self.model.objects.filter(nome_curso__icontains=q)
+        else:
+            object_list = self.model.objects.all()
+        return object_list
 
 
 class CursosDetailView(generic.DetailView):
