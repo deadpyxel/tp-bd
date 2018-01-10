@@ -16,6 +16,7 @@ urlpatterns = [
 
     # URLs IES
     url(r'^ies/$', views.IESListView.as_view(), name='ies-list'),
+    url(r'^ies/add/$', views.IESCreateView.as_view(), name='ies-add'),
     url(r'^ies/(?P<pk>\d+)/$', views.IESDetailView.as_view(),
         name='ies-detail'),
     url(r'^ies/(?P<pk>\d+)/edit/$', views.IESUpdateView.as_view(),

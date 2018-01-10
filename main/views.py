@@ -91,9 +91,10 @@ class IESListView(generic.ListView):
         return object_list
 
 
-class IESCreate(generic.CreateView):
+class IESCreateView(generic.CreateView):
     model = IntituicaoEnsinoSuperior
     fields = ['nome_IES', 'sigla_IES', 'email_IES']
+    template_name = 'main/ies_create_form.html'
 
 
 class IESDetailView(generic.DetailView):
