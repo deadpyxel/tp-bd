@@ -5,17 +5,14 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
-        <a class="btn btn-default pull-right" href="{% url 'main:curso-list' %}">
-            <i class="fas fa-arrow-left"></i>&nbsp;Voltar
-        </a>
-    </div>
-    <hr>
     <div class="panel panel-info">
         <div class="panel-heading">
             <i class="fas fa-graduation-cap"></i>&nbsp;
             <a href="{% url 'main:curso-detail' pk=curso.pk %}">
                 {{ curso.nome_curso }}
+            </a>
+            <a class="pull-right" href="{% url 'main:curso-list' %}">
+                <i class="fas fa-arrow-left"></i>&nbsp;Voltar
             </a>
         </div>
         <div class="panel-body">
@@ -52,6 +49,7 @@
                 {% endif %}
             </p>
             <p><b>Carga horária:&nbsp</b>{{ curso.carga_horaria }}</p>
+            <p><b>Número de vagas:&nbsp</b>{{ curso.num_vagas }}</p>
             <p>
                 <b>Gratuito:&nbsp;</b>
                 {% if curso.curso_gratuito %}
@@ -60,8 +58,17 @@
                 <i class="fas fa-times danger" style="color: #d9534f;"></i>
                 {% endif %}
             </p>
+            <p>
+                <b>Possui acessabilidade:&nbsp;</b>
+                {% if curso.possui_acessabilidade %}
+                <i class="fas fa-check" style="color: #5cb85c;"></i>
+                {% else %}
+                <i class="fas fa-times danger" style="color: #d9534f;"></i>
+                {% endif %}
+            </p>
         </div>
     </div>
+    <hr>
     <div class="row">
         &nbsp;&nbsp;
         <a class="btn btn-default"
