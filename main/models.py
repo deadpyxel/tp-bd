@@ -11,12 +11,12 @@ class IntituicaoEnsinoSuperior(models.Model):
     UNIVERSIDADE = 'UNI'
     CENTRO_UNIVERSITARIO = 'CENT_UNI'
     FACULDADE = 'FACUL'
-    INTITUTO_FEDERAL = 'INST_FED'
+    INSTITUTO_FEDERAL = 'INST_FED'
     ORG_ACADEMICA_CHOICES = (
         (UNIVERSIDADE, 'Universidade'),
         (CENTRO_UNIVERSITARIO, 'Centro Universitário'),
         (FACULDADE, 'Faculdade'),
-        (INTITUTO_FEDERAL, 'Instituto Federal'),
+        (INSTITUTO_FEDERAL, 'Instituto Federal'),
     )
 
     # Categoria administrativa
@@ -39,7 +39,7 @@ class IntituicaoEnsinoSuperior(models.Model):
 
     nome_IES = models.CharField('Nome', max_length=100, null=False)
     sigla_IES = models.CharField('Sigla', max_length=10, null=False)
-    email_IES = models.CharField('Email', max_length=32, null=False)
+    email_IES = models.EmailField('Email', max_length=32, null=False)
     cod_mant = models.ForeignKey('Mantenedora', on_delete=models.CASCADE,
                                  default=1)
     organizacao_academica = models.CharField('Organização Acadêmica',
@@ -54,7 +54,7 @@ class IntituicaoEnsinoSuperior(models.Model):
     cep = models.IntegerField('CEP', default=00000000, null=False)
 
     def get_absolute_url(self):
-        return reverse('main:ies_detail', kwargs={'pk': self.pk})
+        return reverse('main:ies-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nome_IES
@@ -122,7 +122,7 @@ class Curso(models.Model):
                                                 default=False)
 
     def get_absolute_url(self):
-        return reverse('main:ies_detail', kwargs={'pk': self.pk})
+        return reverse('main:ies-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nome_curso

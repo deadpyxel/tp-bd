@@ -112,6 +112,7 @@ class IESUpdateView(generic.UpdateView):
 class IESDeleteView(generic.DeleteView):
     model = IntituicaoEnsinoSuperior
     success_url = reverse_lazy('ies_list')
+    template_name = 'main/ies_confirm_delete.html'
 
 
 # map

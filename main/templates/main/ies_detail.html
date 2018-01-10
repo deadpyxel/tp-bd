@@ -1,14 +1,65 @@
 {% extends 'main/base.html' %}
 
-{% block title %}CompMap | Detalhes do Curso{% endblock %}
+{% block title %}CompMap | Detalhes da Instituição{% endblock %}
 
 {% block content %}
-
 <div class="container">
-    <p>Nome: {{ ies.nome_IES }}</p>
-    <p>Sigla: {{ ies.sigla_IES }}</p>
-    <a class="btn btn-default" href="{% url 'main:ies-edit' pk=object.pk %}">
-        <i class="fas fa-edit"></i>&nbsp;Alterar
-    </a>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <i class="fas fa-graduation-cap"></i>&nbsp;
+            <a href="{% url 'main:ies-detail' pk=ies.pk %}">
+                {{ ies.nome_IES }}
+            </a>
+            <a class="pull-right" href="{% url 'main:ies-list' %}">
+                <i class="fas fa-arrow-left"></i>&nbsp;Voltar
+            </a>
+        </div>
+        <div class="panel-body">
+            <p><b>Sigla:&nbsp;</b>{{ ies.sigla_IES }}</p>
+            <p><b>E-Mail:&nbsp;</b>{{ ies.email_IES }}</p>
+            <p><b>Mantenedora Responsável:&nbsp;</b>{{ ies.cod_mant }}</p>
+            <p><b>Organização Acadêmica:&nbsp;</b>
+                {% if ies.organizacao_academica == 'UNI' %}
+                Universidade
+                {% elif ies.organizacao_academica == 'CENT_UNI' %}
+                Centro Universitário
+                {% elif ies.organizacao_academica == 'FACUL' %}
+                Faculdade
+                {% else %}
+                Instituto Federal
+                {% endif %}
+            </p>
+            <p><b>Rede:&nbsp;</b>
+                {% if ies.rede == 'PUB' %}
+                Pública
+                {% else %}
+                Privada
+                {% endif %}
+            </p>
+            <p><b>Administração:&nbsp;</b>
+                {% if ies.departamento_administrativo == 'FED' %}
+                Federal
+                {% elif ies.departamento_administrativo == 'EST' %}
+                Estadual
+                {% elif ies.departamento_administrativo == 'MUN' %}
+                Municipal
+                {% else %}
+                Privada
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        &nbsp;&nbsp;
+        <a class="btn btn-default"
+           href="{% url 'main:ies-edit' pk=ies.pk %}">
+            <i class="fas fa-edit"></i>&nbsp; Alterar
+        </a>
+        <a class="btn btn-danger"
+           href="{% url 'main:ies-delete' pk=ies.pk %}">
+            <i class="fas fa-trash-alt"></i>&nbsp; Excluir
+        </a>
+    </div>
 </div>
 {% endblock %}
