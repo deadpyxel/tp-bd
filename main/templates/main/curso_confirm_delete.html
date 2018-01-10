@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %}CompMap | Cursos{% endblock %}
+
+{% block content %}
+<div class="container text-center col-md-6" style="display: table;">
+    <div class="panel panel-danger vertical-centered">
+        <div class="panel-heading">
+            <i class="fas fa-exclamation-triangle"></i>&nbsp; Exclusão de Curso
+        </div>
+        <div class="panel-body">
+            <form action="" method="post">{% csrf_token %}
+                <p>Tem certeza que deseja excluir "{{ object }}"?</p>
+                <input class="btn btn-danger btn-lg" type="submit"
+                       value="Confirmar"/>
+                &nbsp;
+                <a class="btn btn-default btn-lg"
+                   href="{% url 'main:curso-detail' pk=curso.pk %}">
+                    Cancelar
+                </a>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

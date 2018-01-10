@@ -10,6 +10,11 @@
     font-family: 'Satisfy', cursive;
 }
 
+.vertical-centered{
+    display: table-cell;
+    vertical-align: middle;
+}
+
 #map {;
     height: 400px;
     background-color: grey;

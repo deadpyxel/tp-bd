@@ -5,19 +5,73 @@
 {% block content %}
 
 <div class="container">
-    <h3>{{ curso.nome_curso }}</h3>
-    <p>Curso de nível {{ curso.nivel_curso }},
-        ministrado pela {{ curso.cod_IES }} a partir de {{ curso.data_inicio_oferta }}</p>
-    <p>Modalidade: {{ curso.modalidade }}</p>
-    <p>Carga Horária: {{ curso.carga_horaria }}</p>
-    <p>Período: {{ curso.periodo }}</p>
-    <p>Gratuito: {{ curso.curso_gratuito }}</p>
-    <p>Número de Vagas: {{ curso.num_vagas }}</p>
-    <a class="btn btn-default" href="{% url 'main:curso_edit' pk=curso.pk %}">
-        <i class="fas fa-edit"></i>&nbsp; Alterar
-    </a>
-    <a class="btn btn-danger" href="{% url 'main:curso_delete' pk=curso.pk %}">
-        <i class="fas fa-edit"></i>&nbsp; Excluir
-    </a>
+    <div class="row">
+        <a class="btn btn-default pull-right" href="{% url 'main:curso-list' %}">
+            <i class="fas fa-arrow-left"></i>&nbsp;Voltar
+        </a>
+    </div>
+    <hr>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <i class="fas fa-graduation-cap"></i>&nbsp;
+            <a href="{% url 'main:curso-detail' pk=curso.pk %}">
+                {{ curso.nome_curso }}
+            </a>
+        </div>
+        <div class="panel-body">
+            <p><b>Instituição responsável:&nbsp;</b>{{ curso.cod_IES }}</p>
+            <p><b>Nível:&nbsp;</b>
+                {% if curso.nivel_curso == 'BACH' %}
+                Bacharelado
+                {% elif curso.nivel_curso == 'LICEN' %}
+                Licenciatura
+                {% elif curso.nivel_curso == 'TEC' %}
+                Tecnólogo
+                {% else %}
+                Não Aplicável
+                {% endif %}
+            </p>
+            <p><b>Modalidade:&nbsp;</b>
+                {% if curso.modalidade == 'PRE' %}
+                Presencial
+                {% else %}
+                Ensino à Distância
+                {% endif %}
+            </p>
+            <p><b>Período:&nbsp;</b>
+                {% if curso.periodo == 'N' %}
+                Noturno
+                {% elif curso.periodo == 'M' %}
+                Matutino
+                {% elif curso.periodo == 'V' %}
+                Vespertino
+                {% elif curso.periodo == 'I' %}
+                Integral
+                {% else %}
+                Vespertino/Noturno
+                {% endif %}
+            </p>
+            <p><b>Carga horária:&nbsp</b>{{ curso.carga_horaria }}</p>
+            <p>
+                <b>Gratuito:&nbsp;</b>
+                {% if curso.curso_gratuito %}
+                <i class="fas fa-check" style="color: #5cb85c;"></i>
+                {% else %}
+                <i class="fas fa-times danger" style="color: #d9534f;"></i>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        &nbsp;&nbsp;
+        <a class="btn btn-default"
+           href="{% url 'main:curso-edit' pk=curso.pk %}">
+            <i class="fas fa-edit"></i>&nbsp; Alterar
+        </a>
+        <a class="btn btn-danger"
+           href="{% url 'main:curso-delete' pk=curso.pk %}">
+            <i class="fas fa-trash-alt"></i>&nbsp; Excluir
+        </a>
+    </div>
 </div>
 {% endblock %}

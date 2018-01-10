@@ -3,64 +3,15 @@
 {% block add_curso_active %}active{% endblock %}
 
 {% block content %}
-<h1>Novo Curso</h1>
-<form method="post" class="form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Salvar</button>
-</form>
-<div class="container" id="cep_app">
-    <h2>digite o CEP</h2>
-    <div class="form">
-        <input onclick="this.value=''" type="text" v-model="cep" maxlength="8"
-               placeholder="ex: 19060050"/>
-    </div>
-    <div class="error">erro</div>
-    <div class="display">place</div>
-    <script>
-        var app = new Vue({
-            el: "#app",
-        data: {
-            city: "",
-            cep: "56302000",
-            error: ""
-        },
-        methods: {
-            getCity: function() {
-                var self = this;
-                $.getJSON("https://viacep.com.br/ws/" + this.cep+"/json", function(result) {
-                    if (("erro" in result)) {
-                        self.error = "CEP não encontrado";
-                        self.city = "";
-                        $(".error").addClass("no");
-                    } else {
-                        self.city = result.logradouro +", "+result.bairro+ " - "+ result.localidade + "/" + result.uf;
-                        $(".display").addClass("animated fadeInDown");
-                    }
-                    console.log(result);
-                });
-            }
-        },
-  watch: {
-    cep: function() {
-      if (this.cep.length === 8) {
-        this.getCity();
-        this.error = "";
-        $(".error").removeClass("no");
-      }
-      if (this.cep.length < 8) {
-        this.city = "";
-        this.error = "CEP Inválido";
-        $(".error").addClass("no");
-         $(".display").removeClass("animated fadeInDown");
-      }
-    }
-  },
-  mounted: function(){
-    this.getCity();
-  }
-})
+<div class="container">
 
-    </script>
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        <legend>Editar Curso</legend>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-save"></i>&nbsp; Salvar
+        </button>
+    </form>
 </div>
 {% endblock %}

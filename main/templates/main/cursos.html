@@ -6,36 +6,52 @@
 
 {% block content %}
 <div class="container">
-    <form class="navbar-form" role="search" method="get"
-          action="{% url 'main:curso_list' %}">
-        <input type="text" class="form-control" name="q"
-               value="{{ request.GET.q }}" placeholder="Busca">
-        <button type="submit" class="btn btn-default">
-            <i class="fas fa-search"></i>
-        </button>
-    </form>
+    <div class="row">
+        <form class="navbar-form" role="search" method="get"
+              action="{% url 'main:curso-list' %}">
+            <input type="text" class="form-control" name="q"
+                   value="{{ request.GET.q }}" placeholder="Busca">
+            <button type="submit" class="btn btn-default">
+                <i class="fas fa-search"></i>
+            </button>
+            <a class="btn btn-success pull-right"
+               href="{% url 'main:curso-add' %}">
+                <i class="fas fa-plus"></i>&nbsp; Adicionar Curso
+            </a>
+        </form>
+    </div>
     <br>
+    <!-- WKWpwj2I -->
     <div class="panel-group">
         {% for curso in cursos %}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fas fa-graduation-cap"></i>&nbsp;
-                <a href="{% url 'main:curso_detail' pk=curso.pk %}">
+                <a href="{% url 'main:curso-detail' pk=curso.pk %}">
                     {{ curso.nome_curso }}
                 </a>
             </div>
             <div class="panel-body">
-                Curso {{ curso.modalidade }} de {{ curso.nivel_curso }},
+                Curso {% if curso.modalidade == 'PRE' %}
+                Presencial.
+                {% else %}
+                Ensino à Distância.
+                {% endif %}
+                de {{ curso.nivel_curso }},
                 {% if curso.curso_gratuito is True %}
                 Gratuito.
                 {% else %}
                 Particular.
                 {% endif %}
-                Ministrado no período {{ curso.periodo }}.
+                Ministrado pela {{ curso.cod_IES }}
+                no período {{ curso.periodo }}.
             </div>
         </div>
         {% empty %}
-        <div class="panel panel-heading">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <i class="fas fa-info"></i>&nbsp; Sem resultados
+            </div>
             <div class="panel-body">
                 {% if q != '' %}
                 Não existem cursos com os parâmetros de busca.
