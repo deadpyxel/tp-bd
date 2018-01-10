@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls.base import reverse_lazy
 from django.views import generic
-from .forms import CursoForm
 from .models import Curso, IntituicaoEnsinoSuperior
 
 
@@ -10,8 +9,12 @@ from .models import Curso, IntituicaoEnsinoSuperior
 # TODO Add Map views
 
 
+def index(request):
+    return render(request, 'main/index.html')
+
+
 # views Cursos
-class CursosListView(generic.ListView):
+class CursoListView(generic.ListView):
     template_name = 'main/cursos.html'
     context_object_name = 'cursos'
     model = Curso
@@ -31,43 +34,30 @@ class CursosListView(generic.ListView):
         return object_list
 
 
-class CursosDetailView(generic.DetailView):
+class CursoCreateView(generic.CreateView):
+    model = Curso
+    fields = ['nome_curso', 'data_inicio_oferta', 'cod_IES', 'carga_horaria',
+              'modalidade', 'nivel_curso', 'periodo', 'curso_gratuito',
+              'num_vagas', 'possui_acessabilidade']
+    template_name = 'main/curso_create_form.html'
+
+
+class CursoUpdateView(generic.UpdateView):
+    model = Curso
+    fields = ['nome_curso', 'data_inicio_oferta', 'cod_IES', 'carga_horaria',
+              'modalidade', 'nivel_curso', 'periodo', 'curso_gratuito',
+              'num_vagas', 'possui_acessabilidade']
+    template_name = 'main/curso_update_form.html'
+
+
+class CursoDetailView(generic.DetailView):
     model = Curso
     template_name = 'main/curso_detail.html'
 
 
 class CursoDeleteView(generic.DeleteView):
     model = Curso
-    success_url = reverse_lazy('curso_list')
-
-
-def index(request):
-    return render(request, 'main/index.html')
-
-
-def curso_new(request):
-    if request.method == "POST":
-        form = CursoForm(request.POST)
-        if form.is_valid():
-            curso = form.save(commit=False)
-            curso.save()
-            return redirect('curso_detail', pk=curso.pk)
-    else:
-        form = CursoForm()
-    return render(request, 'main/curso_update_form.html', {'form': form})
-
-
-def curso_edit(request, pk):
-    curso = get_object_or_404(Curso, pk=pk)
-    if request.method == "POST":
-        form = CursoForm(request.POST, instance=curso)
-        if form.is_valid():
-            curso = form.save(commit=False)
-            curso.save()
-            return redirect('curso_detail', pk=curso.pk)
-    else:
-        form = CursoForm(instance=curso)
-    return render(request, 'main/curso_update_form.html', {'form': form})
+    success_url = reverse_lazy('curso-list')
 
 
 # views IES
@@ -93,25 +83,29 @@ class IESListView(generic.ListView):
 
 class IESCreateView(generic.CreateView):
     model = IntituicaoEnsinoSuperior
-    fields = ['nome_IES', 'sigla_IES', 'email_IES']
+    fields = ['nome_IES', 'sigla_IES', 'email_IES', 'cod_mant',
+              'organizacao_academica', 'rede', 'departamento_administrativo',
+              'cep']
     template_name = 'main/ies_create_form.html'
 
 
 class IESDetailView(generic.DetailView):
     model = IntituicaoEnsinoSuperior
-    template_name = 'main/ies_detail.html'
     context_object_name = 'ies'
+    template_name = 'main/ies_detail.html'
 
 
 class IESUpdateView(generic.UpdateView):
     model = IntituicaoEnsinoSuperior
-    fields = ['nome_IES', 'sigla_IES', 'email_IES']
+    fields = ['nome_IES', 'sigla_IES', 'email_IES', 'cod_mant',
+              'organizacao_academica', 'rede', 'departamento_administrativo',
+              'cep']
     template_name = 'main/ies_update_form.html'
 
 
 class IESDeleteView(generic.DeleteView):
     model = IntituicaoEnsinoSuperior
-    success_url = reverse_lazy('ies_list')
+    success_url = reverse_lazy('ies-list')
     template_name = 'main/ies_confirm_delete.html'
 
 

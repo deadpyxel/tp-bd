@@ -122,7 +122,7 @@ class Curso(models.Model):
                                                 default=False)
 
     def get_absolute_url(self):
-        return reverse('main:ies-detail', kwargs={'pk': self.pk})
+        return reverse('main:curso-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nome_curso

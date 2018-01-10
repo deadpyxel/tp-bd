@@ -4,15 +4,14 @@
 
 {% block content %}
 <div class="container">
-
     <form method="post" class="form-group">
         {% csrf_token %}
-        <legend>Adicionar Instituição</legend>
+        <legend>Adicionar Curso</legend>
         {{ form.as_p }}
         <button type="submit" class="btn btn-success">
             <i class="fas fa-save"></i>&nbsp; Salvar
         </button>
-        <a class="btn btn-danger" href="{% url 'main:ies-list' %}">
+        <a class="btn btn-danger" href="{% url 'main:curso-list' %}">
             <i class="fas fa-times"></i>&nbsp;Cancelar
         </a>
     </form>
